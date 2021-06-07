@@ -7,7 +7,7 @@ const server = net.createServer((c) => {
     console.log('client disconnected');
   });
   c.on('data', (readData) => {
-    const filename = readData.toString();
+    const filename = readData.toString().replace(/\s|\n/g, '');
     fs.readFile(`files/${filename}`, (err, data) => {
       if (!err) {
         console.log(data.length);
